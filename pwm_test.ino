@@ -9,6 +9,9 @@ void setup() {
   pinMode(pwmPin3, INPUT);
   pinMode(pwmPin4, INPUT);
 }
+bool isValidPWM(unsigned long value) {
+  return value > 0 && value < 3000;
+}
 
 void loop() {
   // Measure the length (in microseconds) of the HIGH pulse
@@ -19,19 +22,18 @@ void loop() {
 
 
 
-  if (pwmValue1 > 0 || pwmValue2 > 0 || pwmValue3 > 0 || pwmValue4 > 0) {
-    Serial.print("PWM Pulse Width1: ");
+if (isValidPWM(pwmValue1) || isValidPWM(pwmValue2) || isValidPWM(pwmValue3) || isValidPWM(pwmValue4)) {    Serial.print("PWM Pulse Width1: ");
     Serial.print(pwmValue1);
-    Serial.println(" us \n");
+    Serial.print(" us \t");
     Serial.print("PWM Pulse Width2: ");
     Serial.print(pwmValue2);
-    Serial.println(" us \n");
+    Serial.print(" us \t");
     Serial.print("PWM Pulse Width3: ");
     Serial.print(pwmValue3);
-    Serial.println(" us \n");
+    Serial.print(" us \t");
     Serial.print("PWM Pulse Width4: ");
     Serial.print(pwmValue4);
-    Serial.println(" us \n");
+    Serial.println(" us");
   } else {
     Serial.println("No signal detected");
   }
